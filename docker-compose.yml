@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    ports:
+      - "${FLASK_RUN_PORT}:${FLASK_RUN_PORT}"
+    networks:
+      - backend
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - database
+      - backend
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - database
+
+volumes:
+  db_data:
+
+networks:
+  backend:
+  database:
