@@ -76,5 +76,5 @@ This project is a comprehensive RESTful API application designed for managing, s
 1. Clone the repository and navigate to the project directory.
 2. Build and start the containers using `docker-compose up --build`.
 3. Access the API at `http://localhost:<API_PORT>` and Adminer at `http://localhost:<ADMINER_PORT>`.
+4. Send HTTP queries to the `http://localhost:<API_PORT>` using tools like Postman.
 
-This project showcases a scalable and modular approach to managing meteorological data, providing a solid foundation for further enhancements, such as integrating advanced analytics or real-time data updates. It is ideal for applications requiring precise and structured geographic and temporal data management.
